@@ -1,0 +1,44 @@
+{% extends "mainapp/base_dynamic_template.html" %}
+
+{% block content  %}
+
+
+<h1> Wróć: <a href="{{ Product.category.get_absolute_url }}" style="color: #000 !important;
+  text-decoration: none;">{{ Product.category }}</a>
+</h1>
+
+<section>
+
+    <!-- Post -->
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="bg-image hover-overlay shadow-1-strong rounded ripple" data-mdb-ripple-color="light">
+                <img src="{{ Product.image.url}}" class="img-fluid"/>
+                <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-8 mb-4">
+            <h2>{{ Product.title }}</h2>
+            <p>
+                {{ Product.components }}
+            </p>
+            <h3> alergia: {{ Product.allergy }}</h3>
+            <p> cena za dzien {{ Product.price }} zł : </p>
+            <form action="{% url 'mainapp:cart_add' Product.id %}" method="POST">
+                {{ form_class }}
+                {% csrf_token %}
+                <input type="submit" value="Dadaj do kosza " class="btn btn-success">
+            </form>
+
+
+        </div>
+    </div>
+
+
+</section>
+
+
+{% endblock %}

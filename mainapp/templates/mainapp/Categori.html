@@ -1,0 +1,67 @@
+{% extends "mainapp/base_dynamic_template.html" %}
+
+{% block content  %}
+
+<div class="conteiner_data">
+    {% for i in Cat%}
+    <h1> {{ i.type }}</h1>
+    <p> {{ i.titletext }}</p>
+    {%endfor%}
+</div>
+
+<main class="my-5">
+    <div class="container">
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-md-9 mb-4">
+                <!--Section: Content-->
+                <section>
+                    {% for item in categori %}
+                    <!-- Post -->
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="bg-image hover-overlay shadow-1-strong rounded ripple"
+                                 data-mdb-ripple-color="light">
+                                <img src="{{item.image.url}}" class="img-fluid"/>
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 mb-4">
+                            <h5>{{item.title }}</h5>
+                            <p>
+                                {{item.components }}
+                            </p>
+
+                            <a href="{% url 'mainapp:Product_data' item.category item.slug %}">
+                                <button type="button" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Zobać węcej</button>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </section>
+                <!--Section: Content-->
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-3 mb-4">
+                <!--Section: Sidebar-->
+
+                <!--Section: Sidebar-->
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+
+        <!-- Pagination -->
+
+    </div>
+</main>
+
+{% endblock %}
+

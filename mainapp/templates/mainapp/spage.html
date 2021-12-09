@@ -1,0 +1,174 @@
+{% extends "mainapp/base_dynamic_template.html" %}
+{% load static %}
+{% block title  %} WarszawGO {% endblock %}
+
+
+{% block content %}
+
+
+<section>
+
+    <!--Carousel Wrapper-->
+    <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+        <!--Indicators-->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-2" data-slide-to="1"></li>
+            <li data-target="#carousel-example-2" data-slide-to="2"></li>
+        </ol>
+        <!--/Indicators-->
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <div class="view">
+                    <img class="d-block w-100" src="{% static 'img/order-3.jpg'%}"
+                         alt="First slide">
+                    <a href="#!">
+                        <div class="mask rgba-black-light"></div>
+                    </a>
+                </div>
+                <div class="carousel-caption">
+
+                    <div class="center1">
+                        <div class="center__conteiner"
+                             style="background: rgba(0, 6, 8, 0.1);border-radius:20px;justify-content: center;">
+                            <h3 class="h3-responsive" style="">
+                                Profesjonalny catering dietetyczny. Przeczytaj, co sprawia, że nie pomylisz diety
+                                pudełkowej
+                                WarszawGo z żadną inną dietą.</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="carousel-item">
+                <!--Mask color-->
+                <div class="view">
+                    <img class="d-block w-100" src="{% static 'img/order-6.jpg'%}"
+                         alt="Second slide" sizes="300px">
+                    <a href="#!">
+                        <div class="mask rgba-black-light"></div>
+                    </a>
+                </div>
+                <div class="carousel-caption">
+                    <div class="center1">
+                        <div class="center__conteiner"
+                             style="background: rgba(0, 6, 8, 0.1);border-radius:20px;justify-content: center;">
+                            <h3 class="h3-responsive">WarszawGO to więcej niż catering dietetyczny To filozofia
+                                życia zgodna z naturalnymi potrzebami żywieniowymi każdego z nas.</h3>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <!--Mask color-->
+                <div class="view">
+                    <img class="d-block w-100" src="{% static 'img/order2.jpeg'%}"
+                         alt="Third slide">
+                    <a href="#!">
+                        <div class="mask rgba-black-light"></div>
+                    </a>
+                </div>
+                <div class="carousel-caption">
+                    <div class="center1">
+                        <div class="center__conteiner"
+                             style="background: rgba(0, 6, 8, 0.1);border-radius:20px;justify-content: center;">
+                            <h3 class="h3-responsive">Jesteśmy liderem pozytywnych zmian - edukujemy, angażujemy i
+                                obalamy niezdrowe mity. W Maczfit społeczna odpowiedzialność biznesu to nie są puste
+                                słowa a konkretne działania, które wdrażamy każdego dnia.</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/Slides-->
+        <!--Controls-->
+        <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        <!--/Controls-->
+    </div>
+    <!--/Carousel Wrapper-->
+
+</section>
+
+
+<!--Section: Block Content-->
+<section class="py-5">
+    <h1 style="text-align:center;">POPULARNE DIETY</h1>
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for produc in products %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="{{produc.image.url}}" alt="..."/>
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{ produc.title }}</h5>
+                            <!-- Product price-->
+                            {{ produc.price }}Zł
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                                    href="{% url 'mainapp:Product_data' produc.category produc.slug %}">Zobać
+                            więcej</a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+</section>
+<div class="data_for_main_page">
+    <h1 id="H1title" style="margin-left:50px;width:90%;">WarszawaGo - dla czego my?</h1>
+    <div id="p1title" style="margin-left:50px;width:90%;">
+        <p>WarszawaGo to pierwszy tak profesjonalny catering dietetyczny w Polsce. Co sprawia, ze nie pomylisz nas z
+        innymi?</p>
+
+
+        <p>
+        Jakosc
+        O jakosci, z jakoscia… w warszawaGo slowo „jakosc” odmieniamy przez wszystkie przypadki. I co wiecej – mamy do
+        tego pelne prawo! Nasz system HACCP jest certyfikowany przez niezaleznych audytorow uznanej miedzynarodowej
+        jednostki TUV.</p>
+
+        <p>
+        Dzisiaj zamawiasz, pojutrze jesz!
+        Burczy Ci w brzuchu? Znowu musisz czekac na diete? Z Maczfit szybko zapomnisz o tym problemie! Wystarczy, ze
+        zlozysz zamowienie do godziny 15:00, aby juz pojutrze cieszyc sie zestawem zdrowych i pysznych posilkow prosto
+        od naszych kucharzy. Masz to jak w garnku!</p>
+
+        <p>
+        Zarzadzaj zamowieniem 24h
+        Zmieniaj diete, adres i godziny dostawy. A moze wyjezdzasz na egzotyczne wakacje i chcesz wstrzymac dostawy? Nic
+        prostszego – zaloz konto i zarzadzaj swoim planem dietetycznym z poziomu intuicyjnego panelu sterowania. Zmiany
+        w zakresie adresu i godziny dostawy mozesz wprowadzac z dnia na dzien, ale pamietaj, aby to zrobic do godziny
+        13:00!</p>
+
+        <p>
+        Profesjonalny zespol
+        Nasze posilki to efekt wspolpracy sztabu wykwalifikowanych dietetykow i kucharzy. Komponujemy optymalnie
+        zbilansowane dania bazujac na doswiadczeniu i solidnej wiedzy naszych specjalistow, a nie na chwilowych trendach
+        i modach.</p>
+
+        <p>
+        Bezplatne konsultacje dietetyczne
+        Potrzebujesz porady, a moze pomocy przy wyborze diety? Nasze cudowne dietetyczki kliniczne tylko czekaja, zeby
+        rozwiac wszystkie Twoje watpliwosci. Skorzystaj z czatu na stronie lub zadzwon na infolinie.</p>
+    </div>
+</div>
+
+{% endblock %}

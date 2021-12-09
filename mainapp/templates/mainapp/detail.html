@@ -1,0 +1,92 @@
+{% extends "mainapp/base_dynamic_template.html" %}
+{% load static %}
+
+{% block title %}
+<h1>kosz</h1>
+{% endblock%}
+
+
+{% block content %}
+
+<section class="pt-5 pb-5">
+  <div class="container">
+    <div class="row w-100">
+        <div class="col-lg-12 col-md-12 col-12">
+            <h3 class="display-5 mb-2 text-center">WarszawGo Kosz </h3>
+            <p class="mb-5 text-center">
+               <div class="cart">
+                {% with total_items=cart|length %}
+                    {% if cart|length > 0 %}
+                        Produkty w koszyku:
+                        <a href="{% url 'mainapp:detail' %}">
+                            {{ total_items }} Produkt {{ total_items|pluralize }},
+                        </a>
+                    {% else %}
+                       twój Kosz jest pusty
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <table id="shoppingCart" class="table table-condensed table-responsive">
+                <thead>
+                    <tr>
+                        <th style="width:60%">dieta</th>
+                        <th style="width:12%">cena za 1 dzień</th>
+                        <th style="width:10%">Ilość</th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                {% for item in cart %}
+    {% with product=item.product %}
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-md-3 text-left">
+                                    <img src="{{product.image.url}}" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                </div>
+                                <div class="col-md-9 text-left mt-sm-2">
+                                    <h4>{{ product.title}}</h4>
+
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">{{item.price}}</td>
+                        <td data-th="Quantity">
+                           <p>{{item.Ilość}}</p>
+                        </td>
+                        <td class="actions" data-th="">
+                            <div class="text-right">
+                                <form action="{% url 'mainapp:cart_remove' product.id %}" method="POST">
+                                     <input type="submit" value="Usunąć z kosza" class="btn btn-danger">
+                                        {% csrf_token %}
+
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+ {% endwith %}
+        {% endfor %}
+                </tbody>
+            </table>
+            <div class="float-right text-right">
+                <h4>całkowita cena</h4>
+                <h1>{{ cart.get_total_price }}Zł</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4 d-flex align-items-center">
+        <div class="col-sm-6 order-md-2 text-right">
+            <a href="{% url 'mainapp:order_create' %}" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">zloż zamuwienie </a>
+        </div>
+        <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+            <a href="{% url 'mainapp:home'%}">
+                <i class="fas fa-arrow-left mr-2"></i> Kontynuuj zakupy</a>
+        </div>
+    </div>
+</div>
+</section>
+
+
+
+{% endblock %}

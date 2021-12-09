@@ -1,0 +1,34 @@
+{% extends "mainapp/base_dynamic_template.html" %}
+{% load crispy_forms_tags %}
+
+{% block top %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert{{message.tags}}"> {{ message }}</div>
+{% endfor %}
+{% endif %}
+
+{% endblock %}
+
+{% block content  %}
+<div class="content-section" id="ligincont" style="margin-top:50px;">
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4"> Zaloguj się</legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">login</button>
+        </div>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Nie masz konta? stwórz <a href="{% url 'mainapp:rejestracja' %}">tutaj </a>
+        </small>
+    </div>
+</div>
+
+
+{% endblock %}
