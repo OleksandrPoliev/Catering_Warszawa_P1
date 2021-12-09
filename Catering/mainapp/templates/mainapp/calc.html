@@ -1,0 +1,25 @@
+{% extends "mainapp/base_dynamic_template.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content  %}
+
+
+
+<div class="conteinercalc"  >
+    <div class="box" >
+        <div class="one" >
+        <form action="" method="POST">
+        {% csrf_token %}
+        {{form|crispy }}
+        <input type="submit" name="submit" value="oblicz" class="btn btn-success">
+        </form>
+        </div>
+    </div>
+</div>
+
+<h1 id="h1calc" >Ile kalorii potrzebujesz: {{k}}</h1>
+
+
+
+{% endblock %}

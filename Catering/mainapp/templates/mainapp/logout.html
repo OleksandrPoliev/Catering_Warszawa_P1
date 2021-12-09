@@ -1,0 +1,16 @@
+{% extends "mainapp/base_dynamic_template.html" %}
+{% load crispy_forms_tags %}
+{% block title  %} <p>Jesteś wylogowany </p> {% endblock %}
+{% block content  %}
+{% if form.errors %}
+<p>Jesteś wylogowany </p>
+{% endif %}
+<h2>Jesteś wylogowany</h2>
+<div class="border-top pt-3">
+    <small class="text-muted">
+        <a class="ml-2" href="{% url 'mainapp:login' %}"> Chcesz zalogować się ponownie ? </a>
+    </small>
+</div>
+
+{% endblock %}
+

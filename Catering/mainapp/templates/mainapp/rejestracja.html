@@ -1,0 +1,23 @@
+{% extends "mainapp/base_dynamic_template.html" %}
+{% load crispy_forms_tags %}
+{% block title  %}<p>REJESTRACJA </p> {% endblock %}
+
+{% block content %}
+<div class="content-section " id="regcon"  style="margin-bottom:100px;margin-top:50px;">
+  <form method="POST" class="form-group">
+      {% csrf_token %}
+       <fieldset class="form-group">
+         <legend class="border-bottom mb-4"> Dołącz się</legend>
+         {{ form|crispy }}
+       </fieldset>
+        <div class="form-group" >
+          <button type="submit" class="btn btn-success">ZAREJESTRUJ SIĘ</button>
+        </div>
+  </form>
+  <div class="border-top pt-3">
+    <small class="text-muted">
+      Już masz konto ? <a class="ml-2" href="{% url 'mainapp:login' %}"> Zaloguj się</a>
+    </small>
+  </div>
+</div>
+{% endblock %}

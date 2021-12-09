@@ -1,0 +1,57 @@
+{% extends "mainapp/base_dynamic_template.html" %}
+{% load crispy_forms_tags %}
+{% block content  %}
+
+<!--Section: Contact v.2-->
+<section class="mb-4">
+
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Skontaktuj się z nami </h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">Czy masz jakieś pytania? Zapraszamy do bezpośredniego kontaktu.</p>
+
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-9 mb-md-0 mb-5">
+
+
+                <!--Grid row-->
+
+                  <form action="" method="POST">
+                  {% csrf_token %}
+                  {{ form|crispy  }}
+                     <input type="submit" value="Odpraw" class="btn btn-success">
+                  </form>
+
+
+
+
+
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-3 text-center">
+            <ul class="list-unstyled mb-0" style="margin-top:100px;">
+                <li><i class="fas fa-map-marker-alt fa-2x"></i>
+                    <p>Warszawa aleje jerozolimskie 95</p>
+                </li>
+
+                <li><i class="fas fa-phone mt-4 fa-2x"></i>
+                    <p>catering.warszawgo@gmail.com</p>
+                </li>
+
+                <li><i class="fas fa-envelope mt-4 fa-2x"></i>
+                    <p>+ 48 234 567 89</p>
+                </li>
+            </ul>
+        </div>
+        <!--Grid column-->
+
+    </div>
+
+</section>
+<!--Section: Contact v.2-->
+{% endblock %}

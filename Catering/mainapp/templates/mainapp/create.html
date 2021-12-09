@@ -1,0 +1,38 @@
+{% extends "mainapp/base_dynamic_template.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Sprawdż zamówienie{% endblock %}
+
+{% block content %}
+<div class="conteiner" id="koszkont" >
+    <h1>Sprawdż zamówienie</h1>
+    <div class="order-info">
+        <h3>Twoje zamówienie</h3>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    {{ item.Ilość }}x {{ item.product.title }}
+                    <span>Zł{{ item.total_price }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Cena: Zł{{ cart.get_total_price }}</p>
+    </div>
+
+
+
+    {% if user.is_authenticated %}
+         <form action="." method='post' class="order-form" >
+            {{ form|crispy }}
+            <p><input type="submit" value="Kupić" class="btn btn-success"></p>
+            {% csrf_token %}
+        </form>
+
+    {% else %}
+        zaloguj się lub szłóż konto dla skończenia zakupy
+        <a href="{% url 'mainapp:login' %}"  class="btn btn-primary mb-4 btn-lg pl-5 pr-5 btn-sm" style=";">login</a>
+        <a href="{% url 'mainapp:rejestracja' %}"  class="btn btn-primary mb-4 btn-lg pl-5 pr-5 btn-sm">rejestracja</a>
+
+    {%endif%}
+</div>
+{% endblock %}
